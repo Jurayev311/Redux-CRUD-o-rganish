@@ -1,8 +1,10 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import AddModal from '../modal/Modal'
+import { deleteTodo } from '../../store/features/todoSlice'
 
 const Todo = () => {
     const todos = useSelector(state => state.todoReducer.value)
+    const dispatch = useDispatch()
 
     return (
         <div>
@@ -20,7 +22,7 @@ const Todo = () => {
                             </div>
                             <div className='flex gap-2.5'>
                                 <button className='px-4 py-2 bg-amber-500 rounded text-white active:scale-95 duration-200'>Edit</button>
-                                <button className='px-4 py-2 bg-green-500 rounded text-white active:scale-95 duration-200'>Complete</button>
+                                <button onClick={() => dispatch(deleteTodo(todo.id))} className='px-4 py-2 bg-green-500 rounded text-white active:scale-95 duration-200'>Complete</button>
                             </div>
                         </div>
                     ))

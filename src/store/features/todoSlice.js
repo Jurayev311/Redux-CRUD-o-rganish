@@ -17,10 +17,20 @@ export const todoSlice = createSlice({
 
       //localstorage saqlash uchun ishlatiladi
       localStorage.setItem("todos", JSON.stringify(state.value))
+    },
+    deleteTodo: (state, action) => {
+      // Yangi massiv yaratmiz va localstorage ga saqlaymiz
+      const updateTodo = state.value.filter(todo => todo.id !== action.payload)
+
+      // redux storeni yangilaymiz
+      state.value = updateTodo
+
+      // yangilangan ma'lumotni localstoragega saqlaymiz
+      localStorage.setItem("todos", JSON.stringify(updateTodo))     
     }
   },
 })
 
-export const { addTodo } = todoSlice.actions
+export const { addTodo, deleteTodo } = todoSlice.actions
 
 export default todoSlice.reducer
