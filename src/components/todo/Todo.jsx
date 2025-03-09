@@ -3,7 +3,7 @@ import AddModal from '../modal/Modal'
 
 const Todo = () => {
     const todos = useSelector(state => state.todoReducer.value)
-    console.log(todos);
+    // console.log(todos);
 
     return (
         <div>
