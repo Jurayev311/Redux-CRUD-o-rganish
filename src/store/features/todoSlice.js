@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  value: [],
+  // localstorageda ma'lumot bo'lsa oladi bulmasa [] qaytaradi
+  value: JSON.parse(localStorage.getItem('todos')) || [],
 }
 
 export const todoSlice = createSlice({
@@ -13,6 +14,9 @@ export const todoSlice = createSlice({
       console.log(action.payload); 
       // value ga todo ichidagi qiymatlarni berib yuboramiz
       state.value.push(action.payload)
+
+      //localstorage saqlash uchun ishlatiladi
+      localStorage.setItem("todos", JSON.stringify(state.value))
     }
   },
 })
